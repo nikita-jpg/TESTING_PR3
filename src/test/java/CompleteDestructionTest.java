@@ -21,6 +21,19 @@ class CompleteDestructionTest {
 
     @Test
     void recursiveDelete() {
+        File dir = new File("testDirectory");
+        dir.mkdir();
+
+        File file1 = new File(dir.getAbsolutePath()+"\\file1.txt");
+        File file2 = new File(dir.getAbsolutePath()+"\\file2.txt");
+        try {
+            file1.createNewFile();
+            file2.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Assertions.assertEquals(false,dir.exists());
     }
 
     @Test

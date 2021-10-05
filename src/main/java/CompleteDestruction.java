@@ -14,6 +14,11 @@ public class CompleteDestruction {
 
     public void deleteFile(File file){
 
+        overwriteFile(file, "1516516565468");
+        overwriteFile(file, "ergkjkregvrekgrek");
+        overwriteFile(file, "wef1ew65f4ew6rv4r8e9vg46f");
+
+        file.delete();
     }
 
     public void overwriteFile(File file, String str){
