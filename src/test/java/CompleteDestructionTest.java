@@ -29,18 +29,38 @@ class CompleteDestructionTest {
     @Test
     void overwriteFile() {
 
-        // Символы для перезаписи
-        String str = "1234";
-
         // Создаём временный файл для тестирования
         try {
-            File file = File.createTempFile("testFile",".txt");
-            FileWriter fileWriter = new FileWriter(file, false);
+            File file = new File("Example.txt");
 
-            fileWriter.write(str);
-            fileWriter.close();
+            // Создание файла
+            file.createNewFile();
 
-            Assertions.assertEquals(str, (new FileReader(file).read()));
+            // Создание объекта FileWriter
+            FileWriter writer = new FileWriter(file);
+
+            // Запись содержимого в файл
+            writer.write("Это простой пример,\n в котором мы осуществляем\n с помощью языка Java\n запись в файл\n и чтение из файла\n");
+            writer.flush();
+            writer.close();
+
+            File fileOverwrite = new File("Example.txt");
+            FileWriter writerOverwrite  = new FileWriter(file,false);
+
+            // Перезаписываем файл
+            writerOverwrite.write("Новые символы");
+            writerOverwrite.close();
+
+            // Создание объекта FileReader
+            String returnStr = "";
+            FileReader fr = new FileReader(file);
+            int c;
+            while((c=fr.read())!=-1){
+                returnStr = returnStr + (char)c;
+            }
+            fr.close();
+
+            Assertions.assertEquals("Новые символы",returnStr);
 
         } catch (IOException e) {
             e.printStackTrace();
