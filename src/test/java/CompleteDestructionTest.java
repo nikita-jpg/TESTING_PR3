@@ -27,7 +27,7 @@ class CompleteDestructionTest {
     void deleteFile() {
         File file = new File("Example.txt");
 
-
+        file.delete();
         Assertions.assertEquals(false,file.exists());
     }
 
