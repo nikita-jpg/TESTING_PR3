@@ -5,11 +5,22 @@ import java.nio.file.Path;
 
 public class CompleteDestruction {
     public static void main(String[] args) {
-
+        
     }
 
     public void recursiveDelete(File file){
+        //если это папка, то идем внутрь этой папки и вызываем рекурсивное удаление всего, что там есть
+        if (file.isDirectory()) {
+            for (File f : file.listFiles()) {
+                recursiveDelete(f);
+            }
+        }
 
+        if(file.isDirectory())
+            file.delete();
+        else {
+            deleteFile(file);
+        }
     }
 
     public void deleteFile(File file){
