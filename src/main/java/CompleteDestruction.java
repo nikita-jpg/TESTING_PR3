@@ -2,13 +2,24 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Scanner;
 
 public class CompleteDestruction {
     public static void main(String[] args) {
-        
+        Scanner in = new Scanner(System.in);
+
+        String path = in.nextLine();
+
+        File file = new File(path);
+        if(!file.exists()){
+            System.out.println("Неправильный путь");
+            return;
+        }
+
+        recursiveDelete(file);
     }
 
-    public void recursiveDelete(File file){
+    public static void recursiveDelete(File file){
         //если это папка, то идем внутрь этой папки и вызываем рекурсивное удаление всего, что там есть
         if (file.isDirectory()) {
             for (File f : file.listFiles()) {
@@ -23,7 +34,7 @@ public class CompleteDestruction {
         }
     }
 
-    public void deleteFile(File file){
+    public static void deleteFile(File file){
 
         overwriteFile(file, "1516516565468");
         overwriteFile(file, "ergkjkregvrekgrek");
@@ -32,7 +43,7 @@ public class CompleteDestruction {
         file.delete();
     }
 
-    public void overwriteFile(File file, String str){
+    public static void overwriteFile(File file, String str){
         // Создание объекта FileWriter
         FileWriter writer = null;
         try {
