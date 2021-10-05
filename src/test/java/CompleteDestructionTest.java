@@ -33,6 +33,29 @@ class CompleteDestructionTest {
             e.printStackTrace();
         }
 
+//        if (!file.exists())
+//            return;
+
+        //если это папка, то идем внутрь этой папки и вызываем рекурсивное удаление всего, что там есть
+        if (dir.isDirectory()) {
+            for (File f : dir.listFiles()) {
+                // рекурсивный вызов
+//                recursiveDelete(f);
+            }
+        }
+
+        file1.delete();
+        file2.delete();
+        if(dir.isDirectory())
+            dir.delete();
+        else {
+//            deleteFile();
+            file1.delete();
+            file2.delete();
+        }
+
+        dir.delete();
+
         Assertions.assertEquals(false,dir.exists());
     }
 
